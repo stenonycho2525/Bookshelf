@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Book extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'title',
+        'author',
+        'isbn',
+        'published',
+        'detail',
+        'picture',
+    ];
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class)->withTimestamps();
+    }
+}
