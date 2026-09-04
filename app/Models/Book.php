@@ -25,4 +25,8 @@ class Book extends Model
     {
         return $this->belongsToMany(Genre::class)->withTimestamps();
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

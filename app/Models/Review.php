@@ -15,4 +15,12 @@ class Review extends Model
         'rate',
         'comment',
     ];
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Book::class);
+    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
