@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreReviewReques extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'rating' => ['required', 'integer', 'between:1,5'],
+            'comment' => ['nullable', 'string', 'max:1000'],
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'rating.required' => '評価を選択してください。',
+            'rating.integer' => '評価の形式が正しくありません。',
+            'rating.between' => '評価は1〜5の範囲で選択してください。',
+            'comment.string' => 'コメントの形式が正しくありません。',
+            'comment.max' => 'コメントは1000文字以内で入力してください。',
+        ];
+    }
+}
