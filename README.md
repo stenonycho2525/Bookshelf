@@ -26,7 +26,7 @@ http://localhost/
 1. **リポジトリをクローン**
 
    ```bash
-   git clone https://github.com/stenonycho2525/contact-form_test_2.git
+   git clone https://github.com/stenonycho2525/Bookshelf.git
    ```
 
    2. **.envファイルの準備**
@@ -56,6 +56,11 @@ http://localhost/
    ```bash
    ./vendor/bin/sail up -d
    ```
+   エイリアスの設定を行い、コマンドを短く打てるよう設定
+   ```bash
+   echo "alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'" >> ~/.bashrc
+   source ~/.bashrc
+   ```
 
 5. **アプリケーションキーの生成**
 
@@ -64,7 +69,18 @@ http://localhost/
    ./vendor/bin/sail artisan key:generate
    ```
 
-6. **Vite開発サーバーの起動**
+6. **フロントエンドのビルド**
+   NPM依存パッケージのインストール
+   ```bash
+   sail npm install
+   ```
+   Tailwind CSSのインストール
+   ```bash
+   sail npm install -D tailwindcss@^3.4.0 postcss autoprefixer
+   sail npm install alpinejs
+   ```
+
+7. **Vite開発サーバーの起動**
 
    別のターミナルで下記のコマンドを実行する
    ※このコマンドは常に実行した状態にしておく
@@ -79,19 +95,12 @@ http://localhost/
    ./vendor/bin/sail artisan migrate
    ```
 
-8. **フロントエンドのビルド**
-
-   JavaScriptのパッケージをインストールする
-   ```bash
-   ./vendor/bin/sail npm install
-   ```
-
-9. **アプリケーションへのアクセス**
+8. **アプリケーションへのアクセス**
 
    ブラウザで以下のURLを開く
    http://localhost
 
 ## 機能一覧
 
-- 名前、メールアドレス、電話番号を入力し、お問い合わせ内容を記入してユーザが問い合わせを送信することができます。
+- 書籍を登録して、書籍情報を管理することが出来ます。
 - ユーザ登録、管理画面へのログイン、ログアウトができます。

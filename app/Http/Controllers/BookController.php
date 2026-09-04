@@ -16,12 +16,7 @@ class BookController extends Controller
      */
     public function index(): View
     {
-        $books = Book::query()
-            ->with('genres')
-            ->withCount('reviews')
-            ->withAvg('reviews', 'rating')
-            ->latest()
-            ->paginate(10);
+        $books = Book::with('genres')->latest()->paginate(10);
 
         return view('books.index', compact('books'));
     }
